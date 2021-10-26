@@ -54,7 +54,6 @@ class SampleFormViewModelImpl extends SampleFormViewModel {
   @override
   bool login() {
     bool loginSucceed = loginModelContract.login();
-    print(showLoginError);
     showLoginError = !loginSucceed;
     datasourceChangedStreamController.sink.add(this);
     return loginSucceed;

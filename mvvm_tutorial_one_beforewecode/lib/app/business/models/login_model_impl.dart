@@ -33,7 +33,6 @@ class LoginModelImpl extends LoginModelContract {
 
   @override
   bool login() {
-    print("username $username password $password");
     return username == "123" && password == "easyasabc";
   }
 }

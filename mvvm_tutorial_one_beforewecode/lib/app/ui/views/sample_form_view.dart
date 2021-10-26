@@ -35,7 +35,7 @@ class SampleFormView extends View<SampleFormViewModel> {
               ),
             ),
             if (viewModel.showUpdateUsernameError())
-              const Text("This Charcater is not allowed"),
+              const Text("This Character is not allowed"),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(

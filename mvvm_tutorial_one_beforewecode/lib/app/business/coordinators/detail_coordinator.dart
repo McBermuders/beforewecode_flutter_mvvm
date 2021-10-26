@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/models/tutorial_model_impl.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/tutorial_view_model_impl.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/service/impl/http_get_call_impl.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/ui/views/tutorial_view.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/ui/views/dynamic_list_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
 
@@ -33,7 +33,7 @@ class DetailCoordinator extends Coordinator {
     final tutorialModel = TutorialModelImpl(getData: getData);
     var viewModel =
         TutorialViewModelImpl(coordinator: this, tutorialModel: tutorialModel);
-    var quizWidget = TutorialView(
+    var quizWidget = DynamicListView(
       viewModel,
     );
     widget = quizWidget;

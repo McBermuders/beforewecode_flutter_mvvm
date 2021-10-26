@@ -3,8 +3,6 @@ import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/header_with_optional_image_tile.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/text_tile.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
-import 'package:mvvm_tutorial_one_beforewecode/uicomponents/ui_tab_controller.dart';
-
 import '../cards/regular_text_card.dart';
 
 //flutter
@@ -15,36 +13,36 @@ import 'package:flutter/widgets.dart';
 //dart
 import 'dart:math';
 
-class TutorialView extends View<TutorialViewModel> {
-  const TutorialView(TutorialViewModel viewModel)
+class DynamicListView extends View<TutorialViewModel> {
+  const DynamicListView(TutorialViewModel viewModel)
       : super(viewModel, const Key("TutorialView"));
 
   @override
   Widget buildWithViewModel(BuildContext context, TutorialViewModel viewModel) {
-    return TutorialViewScreen(viewModel, handleRefresh);
+    return DynamicListViewScreen(viewModel, handleRefresh);
   }
 }
 
 typedef HandleRefresh = Future<void> Function();
 
-class TutorialViewScreen extends StatefulWidget {
+class DynamicListViewScreen extends StatefulWidget {
   final TutorialViewModel viewModel;
   final HandleRefresh handleRefresh;
 
-  const TutorialViewScreen(this.viewModel, this.handleRefresh)
+  const DynamicListViewScreen(this.viewModel, this.handleRefresh)
       : super(key: const Key("TutorialViewScreen"));
 
   @override
-  State<StatefulWidget> createState() => TutorialViewScreenState();
+  State<StatefulWidget> createState() => DynamicListViewScreenState();
 }
 
-class TutorialViewScreenState extends State<TutorialViewScreen>
+class DynamicListViewScreenState extends State<DynamicListViewScreen>
     implements TickerProvider {
   late TabController tabController;
   late final HandleRefresh handleRefresh;
   late final TutorialViewModel viewModel;
 
-  TutorialViewScreenState();
+  DynamicListViewScreenState();
 
   @override
   void initState() {
@@ -59,14 +57,14 @@ class TutorialViewScreenState extends State<TutorialViewScreen>
   }
 
   @override
-  void didUpdateWidget(covariant TutorialViewScreen oldWidget) {
+  void didUpdateWidget(covariant DynamicListViewScreen oldWidget) {
     if (tabController.length != viewModel.sectionCount()) {
       setState(() {
         tabController.dispose();
         tabController = TabController(
             vsync: this,
             length:
-                viewModel.sectionCount() == 0 ? 1 : viewModel.sectionCount(),
+            viewModel.sectionCount() == 0 ? 1 : viewModel.sectionCount(),
             initialIndex: viewModel.getSelectedSection());
         tabController.addListener(_handleTabChange);
       });
@@ -170,19 +168,16 @@ class TutorialViewScreenState extends State<TutorialViewScreen>
       itemBuilder: (BuildContext context, int index) {
         if (index == 0) {
           SectionCard sectionCard =
-              viewModel.getCardAtIndex(section, index) as SectionCard;
+          viewModel.getCardAtIndex(section, index) as SectionCard;
           return HeaderWithOptionalImageTile(
             navigator: viewModel.coordinator,
             imageURL: sectionCard.imageUrl,
             key: Key("HeaderWithOptionalImageTile$section-$index"),
           );
         }
-        if(index == 1){
-          return UITabController(uiTabsImplement: UITabsDatasourceHardcodedImpl(), key: Key("MainTab $section"),);
-        }
         var widthFactor = min(500 / MediaQuery.of(context).size.width, 1.0);
         RegularTextCard card =
-            viewModel.getCardAtIndex(section, index) as RegularTextCard;
+        viewModel.getCardAtIndex(section, index) as RegularTextCard;
         return TextTile(
           key: Key("TextTile$section-$index"),
           textCard: card,

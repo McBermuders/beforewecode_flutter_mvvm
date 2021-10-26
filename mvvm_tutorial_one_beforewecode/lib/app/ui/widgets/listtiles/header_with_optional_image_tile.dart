@@ -19,7 +19,7 @@ class HeaderWithOptionalImageTile extends StatelessWidget {
     if (imageURL.isEmpty == false) {
       double screenHeight = MediaQuery.of(context).size.height;
       title = Container(
-        color: Colors.white,
+        color: Colors.transparent,
         width: MediaQuery.of(context).size.width,
         height: screenHeight - screenHeight / 2,
         child: Image.network(
