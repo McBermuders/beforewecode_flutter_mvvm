@@ -1,4 +1,5 @@
 import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/tutorial_view_model.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_code_identifiers.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/header_with_optional_image_tile.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/text_tile.dart';
@@ -64,7 +65,7 @@ class DynamicListViewScreenState extends State<DynamicListViewScreen>
         tabController = TabController(
             vsync: this,
             length:
-            viewModel.sectionCount() == 0 ? 1 : viewModel.sectionCount(),
+                viewModel.sectionCount() == 0 ? 1 : viewModel.sectionCount(),
             initialIndex: viewModel.getSelectedSection());
         tabController.addListener(_handleTabChange);
       });
@@ -168,16 +169,17 @@ class DynamicListViewScreenState extends State<DynamicListViewScreen>
       itemBuilder: (BuildContext context, int index) {
         if (index == 0) {
           SectionCard sectionCard =
-          viewModel.getCardAtIndex(section, index) as SectionCard;
+              viewModel.getCardAtIndex(section, index) as SectionCard;
           return HeaderWithOptionalImageTile(
             navigator: viewModel.coordinator,
             imageURL: sectionCard.imageUrl,
             key: Key("HeaderWithOptionalImageTile$section-$index"),
+            navigationIdentifier: NavigationCodeIdentifiers.form,
           );
         }
         var widthFactor = min(500 / MediaQuery.of(context).size.width, 1.0);
         RegularTextCard card =
-        viewModel.getCardAtIndex(section, index) as RegularTextCard;
+            viewModel.getCardAtIndex(section, index) as RegularTextCard;
         return TextTile(
           key: Key("TextTile$section-$index"),
           textCard: card,

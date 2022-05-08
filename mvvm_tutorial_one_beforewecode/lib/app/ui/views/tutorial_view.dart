@@ -1,4 +1,5 @@
 import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/tutorial_view_model.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_code_identifiers.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/header_with_optional_image_tile.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/text_tile.dart';
@@ -172,13 +173,16 @@ class TutorialViewScreenState extends State<TutorialViewScreen>
           SectionCard sectionCard =
               viewModel.getCardAtIndex(section, index) as SectionCard;
           return HeaderWithOptionalImageTile(
-            navigator: viewModel.coordinator,
-            imageURL: sectionCard.imageUrl,
-            key: Key("HeaderWithOptionalImageTile$section-$index"),
-          );
+              navigator: viewModel.coordinator,
+              imageURL: sectionCard.imageUrl,
+              key: Key("HeaderWithOptionalImageTile$section-$index"),
+              navigationIdentifier: NavigationCodeIdentifiers.detail);
         }
-        if(index == 1){
-          return UITabController(uiTabsImplement: UITabsDatasourceHardcodedImpl(), key: Key("MainTab $section"),);
+        if (index == 1) {
+          return UITabController(
+            uiTabsImplement: UITabsDatasourceHardcodedImpl(),
+            key: Key("MainTab $section"),
+          );
         }
         var widthFactor = min(500 / MediaQuery.of(context).size.width, 1.0);
         RegularTextCard card =

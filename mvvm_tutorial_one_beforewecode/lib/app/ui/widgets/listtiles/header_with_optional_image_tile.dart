@@ -7,9 +7,13 @@ import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/proje
 class HeaderWithOptionalImageTile extends StatelessWidget {
   final ProjectNavigator navigator;
   final String imageURL;
+  final NavigationIdentifier navigationIdentifier;
 
   const HeaderWithOptionalImageTile(
-      {required this.navigator, required this.imageURL, required Key key})
+      {required this.navigator,
+      required this.imageURL,
+      required Key key,
+      required this.navigationIdentifier})
       : super(key: key);
 
   @override
@@ -29,11 +33,11 @@ class HeaderWithOptionalImageTile extends StatelessWidget {
             Widget child,
             ImageChunkEvent? loadingProgress,
           ) {
-            if (loadingProgress != null){
+            if (loadingProgress != null) {
               double percentage = loadingProgress.expectedTotalBytes != null
                   ? loadingProgress.cumulativeBytesLoaded /
-                  loadingProgress.expectedTotalBytes! *
-                  100
+                      loadingProgress.expectedTotalBytes! *
+                      100
                   : 0.0;
               return Center(
                 child: Stack(
@@ -42,7 +46,7 @@ class HeaderWithOptionalImageTile extends StatelessWidget {
                       child: CircularProgressIndicator(
                         value: loadingProgress.expectedTotalBytes != null
                             ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes!
+                                loadingProgress.expectedTotalBytes!
                             : null,
                       ),
                     ),
@@ -53,7 +57,7 @@ class HeaderWithOptionalImageTile extends StatelessWidget {
                   ],
                 ),
               );
-            } else{
+            } else {
               return child;
             }
           },
@@ -73,7 +77,7 @@ class HeaderWithOptionalImageTile extends StatelessWidget {
     }
     return ListTile(
       onTap: () {
-        navigator.move(0, context);
+        navigator.move(this.navigationIdentifier, context);
       },
       title: title,
       subtitle: subtitle,

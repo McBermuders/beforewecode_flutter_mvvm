@@ -6,7 +6,5 @@ abstract class Coordinator implements ProjectNavigator {
 
   View start();
 
-  void restart();
-
   void end();
 }

@@ -8,6 +8,7 @@ import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/sample_fo
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/views/sample_form_external_feedback_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/views/sample_form_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
+import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/project_navigator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
@@ -15,23 +16,16 @@ class FormCoordinator extends Coordinator {
   late View widget;
   bool showExternalFeedback = false;
 
-
   @override
   void end() {
     // TODO: implement end
   }
 
   @override
-  View<ViewModel> move(int to, BuildContext context) {
+  View<ViewModel> move(NavigationIdentifier to, BuildContext context) {
     View view = RootCoordinator().start();
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => view));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => view));
     return view;
-  }
-
-  @override
-  void restart() {
-    // TODO: implement restart
   }
 
   @override
@@ -46,10 +40,11 @@ class FormCoordinator extends Coordinator {
     } else {
       LoginModelContract loginModelContract = LoginModelImpl();
       var viewModel = SampleFormExternalFeedbackViewModelImpl(
-          this,
-          loginModelContract,
-          InputFeedbackViewModelImpl(this),
-          InputFeedbackViewModelImpl(this));
+        this,
+        loginModelContract,
+        InputFeedbackViewModelImpl(this),
+        InputFeedbackViewModelImpl(this),
+      );
       widget = SampleFormExternalFeedbackView(
         viewModel,
       );
