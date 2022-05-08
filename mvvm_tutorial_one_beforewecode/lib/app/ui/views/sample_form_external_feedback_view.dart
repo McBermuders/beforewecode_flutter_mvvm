@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/sample_form_external_feedback_view_model.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/input_feedback_coordinator.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_code_identifiers.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_app_identifiers.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
 
 class SampleFormExternalFeedbackView
@@ -60,7 +60,7 @@ class SampleFormExternalFeedbackView
                   child: const Text("Login"),
                   onPressed: () {
                     if (viewModel.login()) {
-                      this.viewModel.coordinator.move(NavigationCodeIdentifiers.detail, context);
+                      this.viewModel.coordinator.move(NavigationAppIdentifiers.detail, context);
                     }
                   }),
             )

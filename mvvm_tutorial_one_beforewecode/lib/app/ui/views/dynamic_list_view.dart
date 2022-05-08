@@ -1,5 +1,5 @@
 import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/tutorial_view_model.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_code_identifiers.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_app_identifiers.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/header_with_optional_image_tile.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/text_tile.dart';
@@ -174,7 +174,7 @@ class DynamicListViewScreenState extends State<DynamicListViewScreen>
             navigator: viewModel.coordinator,
             imageURL: sectionCard.imageUrl,
             key: Key("HeaderWithOptionalImageTile$section-$index"),
-            navigationIdentifier: NavigationCodeIdentifiers.form,
+            navigationIdentifier: NavigationAppIdentifiers.form,
           );
         }
         var widthFactor = min(500 / MediaQuery.of(context).size.width, 1.0);

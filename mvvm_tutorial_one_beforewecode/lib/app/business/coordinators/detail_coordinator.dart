@@ -4,7 +4,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_code_identifiers.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_app_identifiers.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/models/tutorial_model_impl.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/tutorial_view_model_impl.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/service/impl/http_get_call_impl.dart';
@@ -43,7 +43,7 @@ class DetailCoordinator extends Coordinator {
   @override
   View<ViewModel> move(NavigationIdentifier to, BuildContext context) {
     switch (to) {
-      case NavigationCodeIdentifiers.form:
+      case NavigationAppIdentifiers.form:
         FormCoordinator formCoordinator = FormCoordinator();
         formCoordinator.showExternalFeedback = true;
         View widget = formCoordinator.start();

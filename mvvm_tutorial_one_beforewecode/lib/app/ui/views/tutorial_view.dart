@@ -1,5 +1,5 @@
 import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/tutorial_view_model.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_code_identifiers.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_app_identifiers.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/header_with_optional_image_tile.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/text_tile.dart';
@@ -176,7 +176,7 @@ class TutorialViewScreenState extends State<TutorialViewScreen>
               navigator: viewModel.coordinator,
               imageURL: sectionCard.imageUrl,
               key: Key("HeaderWithOptionalImageTile$section-$index"),
-              navigationIdentifier: NavigationCodeIdentifiers.detail);
+              navigationIdentifier: NavigationAppIdentifiers.detail);
         }
         if (index == 1) {
           return UITabController(
