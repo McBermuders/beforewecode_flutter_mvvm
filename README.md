@@ -3,7 +3,7 @@
 In this tutorial, we will implement a Flutter app using MVVM. In the end, you will be able to create a project with a SOLID, clean, and maintainable structure.
 
 
-Bellow you can interact with another flutter web export which is also built using the MVVM pattern explained in this tutorial. If you want to login to the first sample use 123 as the username and easyasabc as the password.
+Bellow you can interact with another flutter web export which is also built using the MVVM pattern explained in this tutorial. If you want to login to the first sample use 123 as the username and easyasabc as the password. Since, it is work in progress let the app load to see it displaying on the web.
 [https://aftercode.s3.us-east-2.amazonaws.com/#/](https://aftercode.s3.us-east-2.amazonaws.com/mvvm_flutter_sample/index.html)
 
 I prefer to use MVVM as a company pattern. One advantage of using MVVM is that it gives you a design pattern that you can apply to native iOS and Native Android projects as well. In my opinion, using many platforms or framework related software patterns results in island solutions and does not structure the software any better. Using MVVM enables your company, for example, to get iOS devs to start operating with Flutter or Native Android Apps with a much lower learning curve. The same applies to Android devs shifting to iOS.
