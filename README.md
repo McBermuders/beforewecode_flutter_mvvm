@@ -10,15 +10,20 @@ I prefer to use MVVM as a company pattern. One advantage of using MVVM is that i
 It also structures all platforms, in the same way, maintaining good code quality.
 
 Single Responsibility
+
 One important rule to keep in mind, whenever we are going to refactor is to indicate the responsibility of the Class. It makes sense to Wrap every third-party framework, for example, for persistent, analytic tools, and similar.
+
 Open-closed Principle
 Open for extension and closed for modifications.
 Any interface is closed for modifications, and you are able to provide new implementations to extend the functionality of your software. The Interface or Abstract Class is a description of a Class. We will make heavy use of it. It enables you to Inject other Classes by implementing the needed interface, without making changes in any other class.
+
 Liskov substitution principle
 In 1988 Barbara Liskov presented on her keynote Data abstraction, an extension of the Open-closed Principle. In general, it's about using interfaces instead of superclasses. The principle enables you to replace objects of a parent class with objects of a subclass without breaking the application.
 You can ensure this by testing your application injecting objects of all subclasses to make sure that none of them breaks your App.
+
 Interface segregation principle
 Be aware that we can implement several Interfaces. Try to apply the rule if one class does not use and needs a method of the interface to create a second Interface with that method and remove the method from the other interface. Many client-specific interfaces are better than one general-purpose interface.
+
 Dependency inversion principle
 Your classes should only refer to source modules containing abstract classes or interfaces.
 Try to avoid to import any concrete class, you have created. The most flexible apps are those that mostly depend on abstractions.
