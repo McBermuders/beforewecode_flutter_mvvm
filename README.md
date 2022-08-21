@@ -26,7 +26,7 @@ Any interface is closed for modifications, and you are able to provide new imple
 
 Liskov substitution principle
 
-In 1988 Barbara Liskov presented on her keynote Data abstraction, an extension of the Open-closed Principle. In general, it's about using interfaces instead of superclasses. The principle enables you to replace objects of a parent class with objects of a subclass without breaking the application.
+In 1988 Barbara Liskov presented on her keynote Data abstraction, an extension of the Open-closed Principle. In general, the principle enables you to replace objects of a parent class with objects of a subclass without breaking the application.
 You can ensure this by testing your application injecting objects of all subclasses to make sure that none of them breaks your App.
 
 
