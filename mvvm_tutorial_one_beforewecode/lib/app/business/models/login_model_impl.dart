@@ -35,4 +35,9 @@ class LoginModelImpl extends LoginModelContract {
   bool login() {
     return username == "123" && password == "easyasabc";
   }
+
+  @override
+  String getUserName() {
+    return username;
+  }
 }

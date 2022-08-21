@@ -2,20 +2,20 @@ import 'dart:async';
 
 import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/models/login_model_contract.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/input_feedback_view_model.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/sample_form_external_feedback_view_model.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/login_view_model.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
-class SampleFormExternalFeedbackViewModelImpl
-    extends SampleFormExternalFeedbackViewModel {
-  SampleFormExternalFeedbackViewModelImpl(
+class LoginViewModelImpl
+    extends LoginViewModel {
+  LoginViewModelImpl(
       Coordinator coordinator,
       LoginModelContract loginModelContract,
       this.inputFeedbackViewModel,
       this.loginFeedbackViewModel)
       : super(coordinator, loginModelContract);
   final datasourceChangedStreamController =
-      StreamController<SampleFormExternalFeedbackViewModel>.broadcast();
+      StreamController<LoginViewModel>.broadcast();
   final InputFeedbackViewModel inputFeedbackViewModel;
   final InputFeedbackViewModel loginFeedbackViewModel;
 

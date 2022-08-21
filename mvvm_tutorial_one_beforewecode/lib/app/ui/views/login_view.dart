@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/sample_form_external_feedback_view_model.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/login_view_model.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/input_feedback_coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_app_identifiers.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
 
-class SampleFormExternalFeedbackView
-    extends View<SampleFormExternalFeedbackViewModel> {
-  SampleFormExternalFeedbackView(SampleFormExternalFeedbackViewModel viewModel)
+class LoginView
+    extends View<LoginViewModel> {
+  LoginView(LoginViewModel viewModel)
       : super(viewModel, const Key("SampleFormExternalFeedbackView"));
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget buildWithViewModel(
-      BuildContext context, SampleFormExternalFeedbackViewModel viewModel) {
+      BuildContext context, LoginViewModel viewModel) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('www.beforewecode.com'),

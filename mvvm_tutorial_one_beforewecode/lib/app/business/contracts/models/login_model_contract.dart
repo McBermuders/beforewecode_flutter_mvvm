@@ -4,6 +4,7 @@ abstract class LoginModelContract {
   void updatePassword(String updatedPassword);
   bool updateUsername(String updatedUsername);
   bool login();
+  String getUserName();
   void dispose();
 }
 

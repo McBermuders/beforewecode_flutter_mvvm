@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app/business/coordinators/form_coordinator.dart';
+import 'app/business/coordinators/login_coordinator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: FormCoordinator().start(),
+      home: LoginCoordinator().start(),
     );
   }
 }

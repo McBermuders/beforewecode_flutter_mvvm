@@ -3,9 +3,9 @@ import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/models/log
 import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/root_coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/models/login_model_impl.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/input_feedback_view_model_impl.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/sample_form_external_feedback_view_model_impl.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/login_view_model_impl.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/sample_form_view_model_impl.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/ui/views/sample_form_external_feedback_view.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/ui/views/login_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/views/sample_form_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/project_navigator.dart';
@@ -14,7 +14,7 @@ import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_mo
 
 class FormCoordinator extends Coordinator {
   late View widget;
-  bool showExternalFeedback = false;
+  bool showExternalFeedback = true;
 
   @override
   void end() {
@@ -39,13 +39,13 @@ class FormCoordinator extends Coordinator {
       return widget;
     } else {
       LoginModelContract loginModelContract = LoginModelImpl();
-      var viewModel = SampleFormExternalFeedbackViewModelImpl(
+      var viewModel = LoginViewModelImpl(
         this,
         loginModelContract,
         InputFeedbackViewModelImpl(this),
         InputFeedbackViewModelImpl(this),
       );
-      widget = SampleFormExternalFeedbackView(
+      widget = LoginView(
         viewModel,
       );
       return widget;

@@ -4,8 +4,8 @@ import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_mo
 
 import 'input_feedback_view_model.dart';
 
-abstract class SampleFormExternalFeedbackViewModel extends ViewModel {
-  SampleFormExternalFeedbackViewModel(
+abstract class LoginViewModel extends ViewModel {
+  LoginViewModel(
       Coordinator coordinator, this.loginModelContract)
       : super(coordinator);
   final LoginModelContract loginModelContract;

@@ -10,6 +10,16 @@ class SampleFormView extends View<SampleFormViewModel> {
 
   final _formKey = GlobalKey<FormState>();
 
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      const DropdownMenuItem(child: Text("USA"), value: "USA"),
+      const DropdownMenuItem(child: Text("Canada"), value: "Canada"),
+      const DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
+      const DropdownMenuItem(child: Text("England"), value: "England"),
+    ];
+    return menuItems;
+  }
+
   @override
   Widget buildWithViewModel(
       BuildContext context, SampleFormViewModel viewModel) {
@@ -61,6 +71,11 @@ class SampleFormView extends View<SampleFormViewModel> {
                       labelText: 'Password',
                     ),
                     validator: this.viewModel.validatePassword),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DropdownButtonFormField(items: dropdownItems, onChanged: (_) {
+                }),
               ),
               MaterialButton(
                 child: const Text("Done"),
