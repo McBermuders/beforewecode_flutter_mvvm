@@ -6,65 +6,84 @@ import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigat
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
 
 class SampleFormExternalFeedbackView
-    extends View<SampleFormExternalFeedackViewModel> {
-  const SampleFormExternalFeedbackView(
-      SampleFormExternalFeedackViewModel viewModel)
+    extends View<SampleFormExternalFeedbackViewModel> {
+  SampleFormExternalFeedbackView(SampleFormExternalFeedbackViewModel viewModel)
       : super(viewModel, const Key("SampleFormExternalFeedbackView"));
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget buildWithViewModel(
-      BuildContext context, SampleFormExternalFeedackViewModel viewModel) {
+      BuildContext context, SampleFormExternalFeedbackViewModel viewModel) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('www.beforewecode.com'),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                initialValue: "",
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(RegExp(r'^\d+(?:\.\d+)?')),
-                ],
-                onChanged: this.viewModel.updateUsername,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Name',
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.always,
+                  initialValue: "",
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^\d+(?:\.\d+)?')),
+                  ],
+                  onChanged: (v) {
+                    this.viewModel.updateUsername(v);
+                  },
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Name',
+                  ),
+                  validator: this.viewModel.validateUsername,
                 ),
               ),
-            ),
-            InputFeedbackCoordinator(viewModel.getInputFeedbackViewModel())
-                .start(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                onChanged: this.viewModel.updatePassword,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
+              InputFeedbackCoordinator(viewModel.getInputFeedbackViewModel())
+                  .start(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.always,
+                  onChanged: (v) {
+                    this.viewModel.updatePassword(v);
+                  },
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                  ),
+                  validator: this.viewModel.validatePassword,
                 ),
               ),
-            ),
-            InputFeedbackCoordinator(viewModel.getLoginFeedbackViewModel())
-                .start(),
-            Semantics(
-              button: true,
-              label: "My own label",
-              hint: "my own hint",
-              excludeSemantics: true,
-              container: true,
-              child: MaterialButton(
+              InputFeedbackCoordinator(viewModel.getLoginFeedbackViewModel())
+                  .start(),
+              Semantics(
+                button: true,
+                label: "My own label",
+                hint: "my own hint",
+                excludeSemantics: true,
+                container: true,
+                child: MaterialButton(
                   child: const Text("Login"),
                   onPressed: () {
-                    if (viewModel.login()) {
-                      this.viewModel.coordinator.move(NavigationAppIdentifiers.detail, context);
+                    if (_formKey.currentState?.validate() == true) {
+                      if (viewModel.login()) {
+                        this
+                            .viewModel
+                            .coordinator
+                            .move(NavigationAppIdentifiers.detail, context);
+                      }
                     }
-                  }),
-            )
-          ],
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

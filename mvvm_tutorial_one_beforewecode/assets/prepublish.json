@@ -1,0 +1,128 @@
+[
+  {
+    "children": [
+      {
+        "imageURL": "String",
+        "description": "In this tutorial, we will implement a Flutter app using MVVM. In the end, you will be able to create a project with a SOLID, clean, and maintainable structure.",
+        "title": ""
+      },
+      {
+        "imageURL": "String",
+        "description": "https://www.beforewecode.com/readarticle/149",
+        "title": "You can find it under:"
+      },
+      {
+        "imageURL": "String",
+        "description": "This Flutter App contains visual effects and parse a JSON from the internet and showing the result in the App.",
+        "title": ""
+      },
+      {
+        "imageURL": "String",
+        "description": "Have Fun learning!",
+        "title": ""
+      }
+    ],
+    "imageURL": "https://aftercode.s3.us-east-2.amazonaws.com/beforewecodeimages/prepublishapp1.png",
+    "description": "www.beforewecode.com :: coding togheter",
+    "title": "beforewecode.com"
+  },
+  {
+    "children": [
+      {
+        "imageURL": "String",
+        "description": "My name is Tim and, I am a Software Developer based in Austin, Texas.",
+        "title": "Tim Muders"
+      },
+      {
+        "imageURL": "String",
+        "description": "To give you some more insights about my person, I do have extensive experience in developing all kinds of iOS Applications. ",
+        "title": "Background"
+      },
+      {
+        "imageURL": "String",
+        "description": "I also want to mention that I am generally interested in tech and the changes and development around it. After my graduation, I started with Java and Spring, learned Objective-C at night till I became a professional iOS Developer, enjoyed the shift to learn Swift. Besides, I helped to transition existing iOS Apps to Android using Java, and currently gaining experience with Dart in combination with Flutter. "
+      },
+      {
+        "imageURL": "String",
+        "description": "During the last two months, I worked entirely on a new Flutter app from scratch. I enjoyed it and learned a lot.   "
+      },
+      {
+        "imageURL": "String",
+        "description": "Furthermore, I recently launched my idea of a Social Network for Coding Tutorials, which uses Spring for the backend and Angular for the frontend. Each user has specific Roles and Privileges. I used OAUTH2 for the authentication and included a monthly and yearly subscription. "
+      },
+      {
+        "imageURL": "String",
+        "description": "Everyone can join \"before we code\" for free, and create Articles similar to the Network medium.com. You can find it under www.beforewecode.com . I love to explore new technologies, attend meetups, share my knowledge, and learn other views and techniques."
+      },
+      {
+        "title": "",
+        "imageURL": "String",
+        "description": "It would be my pleasure if I can consult you as well."
+      }
+    ],
+    "imageURL": "https://aftercode.s3.us-east-2.amazonaws.com/beforewecodeimages/timm.jpg",
+    "description": "THE ONE STOP SOFTWARE COMPANY",
+    "title": "PrePublish LLC"
+  },
+  {
+    "children": [
+      {
+        "imageURL": "String",
+        "description": "Plan, understand and dive into your vision.",
+        "title": "First quote"
+      },
+      {
+        "imageURL": "String",
+        "description": "We provide you with a detailed breakdown of cost and time per feature for your product.",
+        "title": "Fixed commitment"
+      },
+      {
+        "imageURL": "String",
+        "description": "You receive a click dummy to showcase your product to your board or investors.",
+        "title": "Prototype"
+      },
+      {
+        "imageURL": "String",
+        "description": "We publish after each sprint. You receive a functional product for user beta testing.",
+        "title": "Prepublish"
+      },
+      {
+        "imageURL": "String",
+        "description": "You receive a functional and beautiful finished product.",
+        "title": "Publish"
+      }
+    ],
+    "imageURL": "https://aftercode.s3.us-east-2.amazonaws.com/beforewecodeimages/prepublishapp2.png",
+    "description": "",
+    "title": "execution process"
+  },
+  {
+    "children": [
+      {
+        "imageURL": "String",
+        "description": "It will be my pleasure if you hire me directly, dive into your vision, and finish your idea of high quality. I can work in partnership with your team or work independently on my own. If you have a more significant project with, for example, a tight schedule, it is also possible that I deliver the whole project. We do have a professional and proven team of Senior Developers and Designers.",
+        "title": "Tim Muders"
+      },
+      {
+        "imageURL": "String",
+        "description": "Our Lead Project Manager at PREPUBLISH ensures that your team is productive, fast and creates engaging results. A flexible team of remote Senior Developers, Product Managers and Designers allows you to get the best people with relevant experience for your project.",
+        "title": "Team"
+      }
+    ],
+    "imageURL": "https://aftercode.s3.us-east-2.amazonaws.com/beforewecodeimages/prepublishteam.jpg",
+    "description": "",
+    "title": "team"
+  },
+  {
+    "children": [
+      {
+        "imageURL": "String",
+        "description": "We understand that you won't have the same workload every month. Upgrade your projects with ongoing development support by our top-notch, top tech, product and design Elites. Scale the team up and down within four weeks.",
+        "title": "Maintenance"
+      }
+    ],
+    "imageURL": "https://aftercode.s3.us-east-2.amazonaws.com/beforewecodeimages/9783803203311_01.jpg",
+    "description": "",
+    "title": "maintenance"
+  }
+]

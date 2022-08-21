@@ -7,7 +7,7 @@ import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coord
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
 class SampleFormExternalFeedbackViewModelImpl
-    extends SampleFormExternalFeedackViewModel {
+    extends SampleFormExternalFeedbackViewModel {
   SampleFormExternalFeedbackViewModelImpl(
       Coordinator coordinator,
       LoginModelContract loginModelContract,
@@ -15,7 +15,7 @@ class SampleFormExternalFeedbackViewModelImpl
       this.loginFeedbackViewModel)
       : super(coordinator, loginModelContract);
   final datasourceChangedStreamController =
-      StreamController<SampleFormExternalFeedackViewModel>.broadcast();
+      StreamController<SampleFormExternalFeedbackViewModel>.broadcast();
   final InputFeedbackViewModel inputFeedbackViewModel;
   final InputFeedbackViewModel loginFeedbackViewModel;
 
@@ -69,5 +69,27 @@ class SampleFormExternalFeedbackViewModelImpl
     loginFeedbackViewModel.setFeedback("invalid input: try 123 and easyasabc");
     loginFeedbackViewModel.setShowFeedback(!loginSucceed);
     return loginSucceed;
+  }
+
+  @override
+  String? validatePassword(String? password) {
+    if(password == null || password.isEmpty){
+      return "password is required";
+    }
+    if (password.length < 8){
+      return "you need at least 8 characters";
+    }
+    return null;
+  }
+
+  @override
+  String? validateUsername(String? username) {
+    if(username == null || username.isEmpty){
+      return "username is required just numbers allowed";
+    }
+    if (username.length < 3){
+      return "you need at least 3 characters just numbers allowed";
+    }
+    return null;
   }
 }

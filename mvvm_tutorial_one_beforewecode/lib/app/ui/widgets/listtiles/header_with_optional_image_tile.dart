@@ -77,7 +77,7 @@ class HeaderWithOptionalImageTile extends StatelessWidget {
     }
     return ListTile(
       onTap: () {
-        navigator.move(this.navigationIdentifier, context);
+        navigator.move(navigationIdentifier, context);
       },
       title: title,
       subtitle: subtitle,

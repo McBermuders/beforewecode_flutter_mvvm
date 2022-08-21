@@ -58,4 +58,26 @@ class SampleFormViewModelImpl extends SampleFormViewModel {
     datasourceChangedStreamController.sink.add(this);
     return loginSucceed;
   }
+
+  @override
+  String? validatePassword(String? password) {
+    if(password == null || password.isEmpty){
+      return "password is required";
+    }
+    if (password.length < 8){
+      return "you need at least 8 characters";
+    }
+    return null;
+  }
+
+  @override
+  String? validateUsername(String? username) {
+    if(username == null || username.isEmpty){
+      return "username is required just numbers allowed";
+    }
+    if (username.length < 3){
+      return "you need at least 3 characters";
+    }
+    return null;
+  }
 }

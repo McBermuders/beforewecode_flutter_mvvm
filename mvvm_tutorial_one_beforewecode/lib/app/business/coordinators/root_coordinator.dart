@@ -2,9 +2,7 @@
 //concrete implementations
 
 //flutter
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/detail_coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_app_identifiers.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/detail_tutorial_view_model_impl.dart';

@@ -1,7 +1,6 @@
 //concrete implementation
 //flutter
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/regular_text_card.dart';
 
 class TextTile extends StatelessWidget {

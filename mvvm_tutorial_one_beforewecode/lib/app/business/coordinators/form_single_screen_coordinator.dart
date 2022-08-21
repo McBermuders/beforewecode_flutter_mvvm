@@ -40,12 +40,15 @@ class FormCoordinator extends Coordinator {
     } else {
       LoginModelContract loginModelContract = LoginModelImpl();
       var viewModel = SampleFormExternalFeedbackViewModelImpl(
-          this,
-          loginModelContract,
-          InputFeedbackViewModelImpl(this),
-          InputFeedbackViewModelImpl(this));
+        this,
+        loginModelContract,
+        InputFeedbackViewModelImpl(this),
+        InputFeedbackViewModelImpl(this),
+      );
       widget = SampleFormExternalFeedbackView(
         viewModel,
+
+
       );
       return widget;
     }

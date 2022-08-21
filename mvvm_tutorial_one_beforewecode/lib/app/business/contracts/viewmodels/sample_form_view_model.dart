@@ -11,7 +11,13 @@ abstract class SampleFormViewModel extends ViewModel {
 
   void updatePassword(String updatedPassword);
 
+  String? validateUsername(String? username);
+
+  String? validatePassword(String? password);
+
   bool login();
+
   bool showUpdateUsernameError();
+
   bool showUpdateLoginError();
 }
