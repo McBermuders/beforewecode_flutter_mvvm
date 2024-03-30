@@ -8,7 +8,7 @@ import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/simple_vi
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/views/test_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/project_navigator.dart';
-import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
+import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 
 class TestCoordinator extends Coordinator {
   final clientURL =
@@ -18,19 +18,19 @@ class TestCoordinator extends Coordinator {
   void end() {}
 
   @override
-  View start() {
+  TheView start() {
     var viewModel = SimpleViewModelImpl(this);
-    View view = TestView(
+    TheView view = TestView(
       viewModel: viewModel,
     );
     return view;
   }
 
   @override
-  View move(NavigationIdentifier to, BuildContext context) {
+  TheView move(NavigationIdentifier to, BuildContext context) {
     switch (to) {
       case NavigationAppIdentifiers.root:
-        View widget = RootCoordinator().start();
+        TheView widget = RootCoordinator().start();
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => widget));
         return widget;

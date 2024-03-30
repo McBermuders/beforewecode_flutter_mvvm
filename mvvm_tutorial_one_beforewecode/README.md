@@ -1,8 +1,16 @@
-beforewecode_flutter_mvvm
-In this tutorial, we will implement a Flutter app using MVVM. In the end, you will be able to create a project with a SOLID, clean, and maintainable structure.
+# mvvm_tutorial_one_beforewecode
 
-You will find a more depth explanation on: https://www.beforewecode.com/readarticle/149
+A new Flutter project.
 
-have fun coding,
+## Getting Started
 
-Tim
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

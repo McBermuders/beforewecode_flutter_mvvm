@@ -9,14 +9,14 @@ import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/detail_tu
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/views/tutorial_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/project_navigator.dart';
-import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
+import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 
 class RootCoordinator extends Coordinator {
   @override
   void end() {}
 
   @override
-  View start() {
+  TheView start() {
     var viewModel = DetailTutorialViewModelImpl(coordinator: this);
     final view = TutorialView(
       viewModel,
@@ -25,10 +25,10 @@ class RootCoordinator extends Coordinator {
   }
 
   @override
-  View move(NavigationIdentifier to, BuildContext context) {
+  TheView move(NavigationIdentifier to, BuildContext context) {
     switch (to) {
       case NavigationAppIdentifiers.detail:
-        View widget = DetailCoordinator().start();
+        TheView widget = DetailCoordinator().start();
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => widget));
         return widget;

@@ -10,7 +10,7 @@ import 'package:mvvm_tutorial_one_beforewecode/app/service/impl/http_get_call_im
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/views/dynamic_list_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/project_navigator.dart';
-import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
+import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
 class DetailCoordinator extends Coordinator {
@@ -23,7 +23,7 @@ class DetailCoordinator extends Coordinator {
   void end() {}
 
   @override
-  View start() {
+  TheView start() {
     final getData = HttpGetCallImpl(
       clientURL: clientURL,
     );
@@ -38,11 +38,11 @@ class DetailCoordinator extends Coordinator {
   }
 
   @override
-  View<ViewModel> move(NavigationIdentifier to, BuildContext context) {
+  TheView<ViewModel> move(NavigationIdentifier to, BuildContext context) {
     switch (to) {
       case NavigationAppIdentifiers.form:
         final formCoordinator = FormCoordinator();
-        View widget = formCoordinator.start();
+        TheView widget = formCoordinator.start();
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => widget));
         return widget;

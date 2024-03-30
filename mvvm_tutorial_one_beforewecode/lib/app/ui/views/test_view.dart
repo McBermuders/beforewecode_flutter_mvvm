@@ -4,9 +4,9 @@ import 'package:flutter/scheduler.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/simple_view_model.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/regular_text_card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/text_tile.dart';
-import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
+import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 
-class TestView extends View<SimpleViewModel> implements TickerProvider {
+class TestView extends TheView<SimpleViewModel> implements TickerProvider {
   const TestView({required SimpleViewModel viewModel})
       : super(viewModel, const Key("TestView"));
 

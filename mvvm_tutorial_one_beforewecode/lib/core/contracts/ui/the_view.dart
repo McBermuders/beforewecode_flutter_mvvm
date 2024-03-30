@@ -2,17 +2,17 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
-abstract class View<V extends ViewModel> extends StatefulWidget {
+abstract class TheView<V extends ViewModel> extends StatefulWidget {
   final V viewModel;
 
   @protected
   Widget buildWithViewModel(BuildContext context, V viewModel);
 
-  const View(this.viewModel, Key key) : super(key: key);
+  const TheView(this.viewModel, Key key) : super(key: key);
 
   @override
-  State<View> createState() {
-    return ViewState<V>();
+  State<TheView> createState() {
+    return TheViewState<V>();
   }
 
   Future<void> handleRefresh() async {
@@ -22,7 +22,7 @@ abstract class View<V extends ViewModel> extends StatefulWidget {
   void dispose() {}
 }
 
-class ViewState<V extends ViewModel> extends State<View> {
+class TheViewState<V extends ViewModel> extends State<TheView> {
   late V viewModel;
   List<StreamSubscription> subscriptions = [];
 

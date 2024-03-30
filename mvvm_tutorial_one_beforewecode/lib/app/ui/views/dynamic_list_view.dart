@@ -3,7 +3,7 @@ import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigat
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/header_with_optional_image_tile.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/text_tile.dart';
-import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
+import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 import '../cards/regular_text_card.dart';
 
 //flutter
@@ -13,7 +13,7 @@ import 'package:flutter/scheduler.dart';
 //dart
 import 'dart:math';
 
-class DynamicListView extends View<TutorialViewModel> {
+class DynamicListView extends TheView<TutorialViewModel> {
   const DynamicListView(TutorialViewModel viewModel)
       : super(viewModel, const Key("TutorialView"));
 

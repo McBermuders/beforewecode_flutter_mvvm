@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/login_view_model.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/input_feedback_coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_app_identifiers.dart';
-import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/view.dart';
+import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 
 class LoginView
-    extends View<LoginViewModel> {
+    extends TheView<LoginViewModel> {
   LoginView(LoginViewModel viewModel)
       : super(viewModel, const Key("SampleFormExternalFeedbackView"));
 
