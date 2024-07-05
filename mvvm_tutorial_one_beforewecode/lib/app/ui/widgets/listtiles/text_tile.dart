@@ -19,7 +19,7 @@ class TextTile extends StatelessWidget {
         widthFactor: widthFactor,
         child: Text(
           textCard.title,
-          style: textTheme.caption?.copyWith(
+          style: textTheme.displayMedium?.copyWith(
             color: Colors.black,
             fontWeight: textCard.bold ? FontWeight.w900 : FontWeight.w300,
             letterSpacing: 1.0,

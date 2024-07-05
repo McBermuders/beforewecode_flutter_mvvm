@@ -36,15 +36,15 @@ class TestView extends TheView<SimpleViewModel> implements TickerProvider {
               ),
             ];
           },
-          body: this.viewModel.cardCount() == 0
+          body: viewModel.cardCount() == 0
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : getList()),
+              : getList(viewModel)),
     );
   }
 
-  Widget getList() {
+  Widget getList(SimpleViewModel viewModel) {
     final item = ListView.builder(
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.all(18),

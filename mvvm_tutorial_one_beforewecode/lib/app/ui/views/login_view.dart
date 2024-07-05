@@ -34,13 +34,13 @@ class LoginView
                         RegExp(r'^\d+(?:\.\d+)?')),
                   ],
                   onChanged: (v) {
-                    this.viewModel.updateUsername(v);
+                    viewModel.updateUsername(v);
                   },
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Name',
                   ),
-                  validator: this.viewModel.validateUsername,
+                  validator: viewModel.validateUsername,
                 ),
               ),
               InputFeedbackCoordinator(viewModel.getInputFeedbackViewModel())
@@ -50,14 +50,14 @@ class LoginView
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.always,
                   onChanged: (v) {
-                    this.viewModel.updatePassword(v);
+                    viewModel.updatePassword(v);
                   },
                   obscureText: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
                   ),
-                  validator: this.viewModel.validatePassword,
+                  validator: viewModel.validatePassword,
                 ),
               ),
               InputFeedbackCoordinator(viewModel.getLoginFeedbackViewModel())
@@ -73,8 +73,8 @@ class LoginView
                   onPressed: () {
                     if (_formKey.currentState?.validate() == true) {
                       if (viewModel.login()) {
-                        this
-                            .viewModel
+
+                            viewModel
                             .coordinator
                             .move(NavigationAppIdentifiers.detail, context);
                       }

@@ -10,7 +10,6 @@ class SampleFormView extends TheView<SampleFormViewModel> {
 
   final _formKey = GlobalKey<FormState>();
 
-
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(child: Text("USA"), value: "USA"),
@@ -45,7 +44,7 @@ class SampleFormView extends TheView<SampleFormViewModel> {
                       FilteringTextInputFormatter.allow(
                           RegExp(r'^\d+(?:\.\d+)?')),
                     ],
-                    onChanged: this.viewModel.updateUsername,
+                    onChanged: viewModel.updateUsername,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Name',
@@ -65,27 +64,25 @@ class SampleFormView extends TheView<SampleFormViewModel> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                     autovalidateMode: AutovalidateMode.always,
-                    onChanged: this.viewModel.updatePassword,
+                    onChanged: viewModel.updatePassword,
                     obscureText: true,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                     ),
-                    validator: this.viewModel.validatePassword),
+                    validator: viewModel.validatePassword),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: DropdownButtonFormField(items: dropdownItems, onChanged: (_) {
-                }),
+                child: DropdownButtonFormField(
+                    items: dropdownItems, onChanged: (_) {}),
               ),
               MaterialButton(
                 child: const Text("Done"),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    if (this.viewModel.login()) {
-                      this
-                          .viewModel
-                          .coordinator
+                    if (viewModel.login()) {
+                      viewModel.coordinator
                           .move(NavigationAppIdentifiers.detail, context);
                     }
                   }

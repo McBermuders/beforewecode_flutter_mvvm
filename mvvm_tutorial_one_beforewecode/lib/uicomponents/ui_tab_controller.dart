@@ -131,9 +131,17 @@ class UITabsState extends State<UITabs> {
   }
 
   void onExpansionChangedListener(bool expanded, int index) {
-    setState(() {
-      expandedStateForSection[selectedTab][index] = expanded;
-    });
+    print("onExpansionChangedListener");
+    expandedStateForSection[selectedTab][index] = expanded;
+
+    if (expanded) {
+      setState(() {});
+    }else {
+      Future.delayed(const Duration(milliseconds: 150),(){
+       setState(() {});
+      });
+
+    }
   }
 
   @override
@@ -182,9 +190,7 @@ class UITabsState extends State<UITabs> {
       ));
     }
 
-    return SizedBox(
-      height: uiTabsImplement.calculateSize(
-          selectedTab, expandedStateForSection[selectedTab]),
+    return IntrinsicHeight(
       child: Column(
         children: [
           TabBar(
@@ -241,7 +247,7 @@ class _UIExpansionTile extends StatelessWidget {
     return Card(
       child: Theme(
         data: Theme.of(context).copyWith(
-            backgroundColor: Colors.white, unselectedWidgetColor: Colors.white),
+            unselectedWidgetColor: Colors.white,),
         child: ListTileTheme(
           dense: true,
           child: ExpansionTile(
@@ -284,7 +290,7 @@ class SectionHeaderCell extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8.0, top: 4.0, bottom: 4.0),
               child: Text(
                 title,
-                style: Theme.of(context).textTheme.button,
+                style: Theme.of(context).textTheme.displayMedium,
               ),
             ),
           ),

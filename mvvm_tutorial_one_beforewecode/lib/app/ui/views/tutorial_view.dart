@@ -178,9 +178,78 @@ class TutorialViewScreenState extends State<TutorialViewScreen>
               navigationIdentifier: NavigationAppIdentifiers.detail);
         }
         if (index == 1) {
-          return UITabController(
-            uiTabsImplement: UITabsDatasourceHardcodedImpl(),
-            key: Key("MainTab $section"),
+          return Text("#placeholder");
+          return IntrinsicHeight(
+            child: DefaultTabController(
+              length: 3,
+              child: Scaffold(
+                  appBar: const TabBar(
+                    isScrollable: true,
+                    tabs: [
+                      Tab(icon: Icon(Icons.directions_car)),
+                      Tab(icon: Icon(Icons.directions_transit)),
+                      Tab(icon: Icon(Icons.directions_bike)),
+                    ],
+                  ),
+                  body: TabBarView(
+                    children: [
+                      SizedBox(
+                        width: 400,
+                        child: ExpansionTile(
+                          maintainState: true,
+                          title: const Text(
+                            'Title',
+                          ),
+                          initiallyExpanded: false,
+                          children: [
+                            const Text("1"),
+                            const Text("1jkjdkjajdkjakjsdkjd jskdj ksjd k"),
+                            Container(color: Colors.red, height: 22),
+                            const Text("1"),
+                            const Text("1"),
+                            const Text("1")
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 400,
+                        child: ExpansionTile(
+                          maintainState: true,
+                          title: const Text(
+                            'Title',
+                          ),
+                          initiallyExpanded: false,
+                          children: [
+                            const Text("2"),
+                            const Text("1"),
+                            Container(color: Colors.red, height: 22),
+                            const Text("1"),
+                            const Text("1"),
+                            const Text("1")
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 222,
+                        child: ExpansionTile(
+                          maintainState: true,
+                          title: const Text(
+                            'Title',
+                          ),
+                          initiallyExpanded: false,
+                          children: [
+                            const Text("3"),
+                            const Text("1"),
+                            Container(color: Colors.red, height: 22),
+                            const Text("1"),
+                            const Text("1"),
+                            const Text("1")
+                          ],
+                        ),
+                      )
+                    ],
+                  )),
+            ),
           );
         }
         var widthFactor = min(500 / MediaQuery.of(context).size.width, 1.0);

@@ -3,12 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
 abstract class TheView<V extends ViewModel> extends StatefulWidget {
-  final V viewModel;
+  final V _viewModel;
 
   @protected
   Widget buildWithViewModel(BuildContext context, V viewModel);
 
-  const TheView(this.viewModel, Key key) : super(key: key);
+  const TheView(this._viewModel, Key key) : super(key: key);
 
   @override
   State<TheView> createState() {
@@ -16,7 +16,7 @@ abstract class TheView<V extends ViewModel> extends StatefulWidget {
   }
 
   Future<void> handleRefresh() async {
-    return await viewModel.loadData();
+    return await _viewModel.loadData();
   }
 
   void dispose() {}
@@ -28,7 +28,7 @@ class TheViewState<V extends ViewModel> extends State<TheView> {
 
   @override
   void initState() {
-    viewModel = widget.viewModel as V;
+    viewModel = widget._viewModel as V;
     StreamSubscription<ViewModel> _streamDatasourceChanged;
     _streamDatasourceChanged = viewModel.datasourceChanged.listen((viewModel) {
       setState(() {});
