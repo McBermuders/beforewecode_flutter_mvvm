@@ -4,6 +4,7 @@ import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/header_with_optional_image_tile.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/text_tile.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
+import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 import '../cards/regular_text_card.dart';
 
 //flutter
@@ -19,7 +20,10 @@ class DynamicListView extends TheView<TutorialViewModel> {
 
   @override
   Widget buildWithViewModel(BuildContext context, TutorialViewModel viewModel) {
-    return DynamicListViewScreen(viewModel, handleRefresh);
+    return ViewModelProvider<TutorialViewModel>(
+      viewModel: viewModel,
+      child: DynamicListViewScreen(viewModel, handleRefresh),
+    );
   }
 }
 
@@ -160,7 +164,33 @@ class DynamicListViewScreenState extends State<DynamicListViewScreen>
     );
   }
 
-  Widget getList(int section, ScrollController c, TabController tabController) {
+  Widget getList(int section, ScrollController scrollController, TabController tabController) {
+    return ListWithRefreshIndicator(
+      section: section,
+      scrollController: scrollController,
+      tabController: tabController,
+      handleRefresh: handleRefresh,
+    );
+  }
+}
+
+class ListWithRefreshIndicator extends StatelessWidget {
+  final int section;
+  final ScrollController scrollController;
+  final TabController tabController;
+  final HandleRefresh handleRefresh;
+
+  const ListWithRefreshIndicator(
+      {super.key,
+      required this.section,
+      required this.scrollController,
+      required this.tabController,
+      required this.handleRefresh});
+
+  @override
+  Widget build(BuildContext context) {
+    final viewModel =
+        ViewModelProvider.of<TutorialViewModel>(context).viewModel;
     final item = ListView.builder(
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.all(18),

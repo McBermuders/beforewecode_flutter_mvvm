@@ -53,3 +53,25 @@ class TheViewState<V extends ViewModel> extends State<TheView> {
     return widget.buildWithViewModel(context, viewModel);
   }
 }
+
+class ViewModelProvider<V extends ViewModel> extends InheritedWidget {
+  final V viewModel;
+
+  const ViewModelProvider(
+      {super.key, required super.child, required this.viewModel});
+
+  @override
+  bool updateShouldNotify(ViewModelProvider oldWidget) {
+    return oldWidget.viewModel != oldWidget.viewModel;
+  }
+
+  static ViewModelProvider<V>? maybeOf<V extends ViewModel>(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ViewModelProvider<V>>();
+  }
+
+  static ViewModelProvider<V> of<V extends ViewModel>(BuildContext context) {
+    final ViewModelProvider<V>? result = maybeOf<V>(context);
+    assert(result != null, 'No ViewModelProvider ${V.runtimeType} found in context');
+    return result!;
+  }
+}
