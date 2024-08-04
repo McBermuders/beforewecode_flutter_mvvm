@@ -4,7 +4,6 @@ import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/header_with_optional_image_tile.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/text_tile.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
-import 'package:mvvm_tutorial_one_beforewecode/uicomponents/ui_tab_controller.dart';
 
 import '../cards/regular_text_card.dart';
 
@@ -178,79 +177,7 @@ class TutorialViewScreenState extends State<TutorialViewScreen>
               navigationIdentifier: NavigationAppIdentifiers.detail);
         }
         if (index == 1) {
-          return Text("#placeholder");
-          return IntrinsicHeight(
-            child: DefaultTabController(
-              length: 3,
-              child: Scaffold(
-                  appBar: const TabBar(
-                    isScrollable: true,
-                    tabs: [
-                      Tab(icon: Icon(Icons.directions_car)),
-                      Tab(icon: Icon(Icons.directions_transit)),
-                      Tab(icon: Icon(Icons.directions_bike)),
-                    ],
-                  ),
-                  body: TabBarView(
-                    children: [
-                      SizedBox(
-                        width: 400,
-                        child: ExpansionTile(
-                          maintainState: true,
-                          title: const Text(
-                            'Title',
-                          ),
-                          initiallyExpanded: false,
-                          children: [
-                            const Text("1"),
-                            const Text("1jkjdkjajdkjakjsdkjd jskdj ksjd k"),
-                            Container(color: Colors.red, height: 22),
-                            const Text("1"),
-                            const Text("1"),
-                            const Text("1")
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 400,
-                        child: ExpansionTile(
-                          maintainState: true,
-                          title: const Text(
-                            'Title',
-                          ),
-                          initiallyExpanded: false,
-                          children: [
-                            const Text("2"),
-                            const Text("1"),
-                            Container(color: Colors.red, height: 22),
-                            const Text("1"),
-                            const Text("1"),
-                            const Text("1")
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 222,
-                        child: ExpansionTile(
-                          maintainState: true,
-                          title: const Text(
-                            'Title',
-                          ),
-                          initiallyExpanded: false,
-                          children: [
-                            const Text("3"),
-                            const Text("1"),
-                            Container(color: Colors.red, height: 22),
-                            const Text("1"),
-                            const Text("1"),
-                            const Text("1")
-                          ],
-                        ),
-                      )
-                    ],
-                  )),
-            ),
-          );
+          return const Text("#placeholder");
         }
         var widthFactor = min(500 / MediaQuery.of(context).size.width, 1.0);
         RegularTextCard card =
