@@ -38,7 +38,7 @@ class TutorialModelImpl extends TutorialModelContract {
 
   void networkUpdateFailed(Object onError) {
     TutorialResponseModel responseModel = TutorialResponseModel(
-        status: TutorialResponseStatus.networkError, informations: []);
+        status: TutorialResponseStatus.networkError, sections: []);
     datasourceChangedStreamController.sink.add(responseModel);
     isLoadingContent = false;
   }
@@ -51,11 +51,11 @@ class TutorialModelImpl extends TutorialModelContract {
     if (responseBody.isEmpty) {
       isLoadingContent = false;
       TutorialResponseModel responseModel = TutorialResponseModel(
-          status: TutorialResponseStatus.noDataReceived, informations: []);
+          status: TutorialResponseStatus.noDataReceived, sections: []);
       datasourceChangedStreamController.sink.add(responseModel);
       return;
     }
-    var cards = [];
+    List<List<Card>> cards = [];
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
     List<Information> information =
         parsed.map<Information>((json) => Information.fromJson(json)).toList();
@@ -85,7 +85,7 @@ class TutorialModelImpl extends TutorialModelContract {
       }
     }
     TutorialResponseModel responseModel = TutorialResponseModel(
-        status: TutorialResponseStatus.succeed, informations: cards);
+        status: TutorialResponseStatus.succeed, sections: cards);
     datasourceChangedStreamController.sink.add(responseModel);
     isLoadingContent = false;
   }

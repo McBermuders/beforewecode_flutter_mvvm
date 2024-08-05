@@ -6,11 +6,20 @@ import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/regular_text_card.da
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 
-class DetailTutorialViewModelImpl extends TutorialViewModel {
-  var cards = [];
+class LoadingModel {
   bool isLoadingContent = false;
+}
+
+class SelectedSectionModel {
   int selectedSection = 0;
   int lastSelectedSection = 0;
+}
+
+class DetailTutorialViewModelImpl extends TutorialViewModel {
+  final List<List<Card>> cards = [];
+  final LoadingModel loadingModel = LoadingModel();
+  final SelectedSectionModel selectedSection = SelectedSectionModel();
+
   final datasourceChangedStreamController =
       StreamController<TutorialViewModel>.broadcast();
   final selectedSectionChangedController = StreamController<int>.broadcast();
@@ -32,10 +41,10 @@ class DetailTutorialViewModelImpl extends TutorialViewModel {
   }
 
   Future<void> loadDataMockData() async {
-    if (isLoadingContent) {
+    if (loadingModel.isLoadingContent) {
       return;
     }
-    isLoadingContent = true;
+    loadingModel.isLoadingContent = true;
     cards.clear();
     await Future.delayed(
       const Duration(seconds: 0),
@@ -70,7 +79,7 @@ class DetailTutorialViewModelImpl extends TutorialViewModel {
         }
       }
       datasourceChangedStreamController.sink.add(this);
-      isLoadingContent = false;
+      loadingModel.isLoadingContent = false;
     }
     return;
   }
@@ -95,34 +104,35 @@ class DetailTutorialViewModelImpl extends TutorialViewModel {
 
   @override
   SectionCard infoForSection(int section) {
-    SectionCard sectionCard = cards[section][0];
+    SectionCard sectionCard = cards[section][0] as SectionCard;
     return sectionCard;
   }
 
   @override
   void sectionSelected(int section) {
-    if (selectedSection == section) {
+    if (selectedSection.selectedSection == section) {
       return;
     }
-    selectedSection = section;
+    selectedSection.selectedSection = section;
     selectedSectionChangedController.sink.add(section);
   }
 
   @override
   int setSelectedSection(int selectedSection) {
-    lastSelectedSection = this.selectedSection;
-    this.selectedSection = selectedSection;
-    return this.selectedSection;
+    this.selectedSection.lastSelectedSection =
+        this.selectedSection.selectedSection;
+    this.selectedSection.selectedSection = selectedSection;
+    return this.selectedSection.selectedSection;
   }
 
   @override
-  getSelectedSection() {
-    return selectedSection;
+  int getSelectedSection() {
+    return selectedSection.selectedSection;
   }
 
   @override
   getLastSelectedSection() {
-    return lastSelectedSection;
+    return selectedSection.lastSelectedSection;
   }
 
   @override
@@ -131,4 +141,12 @@ class DetailTutorialViewModelImpl extends TutorialViewModel {
     datasourceChangedStreamController.close();
     selectedSectionChangedController.close();
   }
+
+  @override
+  List<Object?> get props => [
+        cards,
+        loadingModel,
+        selectedSection.selectedSection,
+        selectedSection.lastSelectedSection
+      ];
 }

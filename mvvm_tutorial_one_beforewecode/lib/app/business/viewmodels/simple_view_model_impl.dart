@@ -5,8 +5,12 @@ import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/regular_text_card.da
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
-class SimpleViewModelImpl extends SimpleViewModel {
+class CardCounter {
   int cardCounter = 0;
+}
+
+class SimpleViewModelImpl extends SimpleViewModel {
+  final CardCounter cardCounter = CardCounter();
   final datasourceChangedStreamController =
       StreamController<SimpleViewModelImpl>.broadcast();
 
@@ -24,13 +28,13 @@ class SimpleViewModelImpl extends SimpleViewModel {
   @override
   Future<void> loadData() async {
     await Future.delayed(const Duration(seconds: 3));
-    cardCounter = cardCounter + 1;
+    cardCounter.cardCounter = cardCounter.cardCounter + 1;
     datasourceChangedStreamController.sink.add(this);
   }
 
   @override
   int cardCount() {
-    return cardCounter;
+    return cardCounter.cardCounter;
   }
 
   @override
@@ -38,4 +42,7 @@ class SimpleViewModelImpl extends SimpleViewModel {
     var reg = RegularTextCard("Test $index", false);
     return reg;
   }
+
+  @override
+  List<Object?> get props => [cardCounter.cardCounter];
 }

@@ -4,7 +4,7 @@ import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coord
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
 abstract class TutorialViewModel extends ViewModel {
-  TutorialViewModel(Coordinator coordinator) : super(coordinator);
+  const TutorialViewModel(Coordinator coordinator) : super(coordinator);
 
   Card getCardAtIndex(int section, int index);
 

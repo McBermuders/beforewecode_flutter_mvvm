@@ -6,11 +6,15 @@ import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/contracts/card.dart'
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 
-class TutorialViewModelImpl implements TutorialViewModel {
-  final TutorialModelContract tutorialModel;
-  var cards = [];
+class SelectedSectionModel {
   int selectedSection = 0;
   int lastSelectedSection = 0;
+}
+
+class TutorialViewModelImpl extends TutorialViewModel {
+  final TutorialModelContract tutorialModel;
+  final List<List<Card>> cards = [];
+  final SelectedSectionModel selectedSection = SelectedSectionModel();
   final datasourceChangedStreamController =
       StreamController<TutorialViewModel>.broadcast();
   final selectedSectionChangedController = StreamController<int>.broadcast();
@@ -23,13 +27,14 @@ class TutorialViewModelImpl implements TutorialViewModel {
   Stream<int> get selectedSectionChanged =>
       selectedSectionChangedController.stream;
 
-  @override
-  Coordinator coordinator;
-
   TutorialViewModelImpl(
-      {required this.coordinator, required this.tutorialModel}) {
+      {required Coordinator coordinator, required this.tutorialModel})
+      : super(coordinator) {
     tutorialModel.response.listen((responseModel) {
-      cards = responseModel.informations;
+      cards.clear();
+      for (final sectionOfCardList in responseModel.sections) {
+        cards.add(sectionOfCardList);
+      }
       datasourceChangedStreamController.sink.add(this);
     });
   }
@@ -54,34 +59,35 @@ class TutorialViewModelImpl implements TutorialViewModel {
 
   @override
   SectionCard infoForSection(int section) {
-    SectionCard sectionCard = cards[section][0];
+    SectionCard sectionCard = cards[section][0] as SectionCard;
     return sectionCard;
   }
 
   @override
   void sectionSelected(int section) {
-    if (selectedSection == section) {
+    if (selectedSection.selectedSection == section) {
       return;
     }
-    selectedSection = section;
+    selectedSection.selectedSection = section;
     selectedSectionChangedController.sink.add(section);
   }
 
   @override
   int setSelectedSection(int selectedSection) {
-    lastSelectedSection = this.selectedSection;
-    this.selectedSection = selectedSection;
-    return this.selectedSection;
+    this.selectedSection.lastSelectedSection =
+        this.selectedSection.selectedSection;
+    this.selectedSection.selectedSection = selectedSection;
+    return this.selectedSection.selectedSection;
   }
 
   @override
   int getSelectedSection() {
-    return selectedSection;
+    return selectedSection.selectedSection;
   }
 
   @override
   int getLastSelectedSection() {
-    return lastSelectedSection;
+    return selectedSection.lastSelectedSection;
   }
 
   @override
@@ -97,4 +103,8 @@ class TutorialViewModelImpl implements TutorialViewModel {
     await tutorialModel.loadData();
     return;
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
 }

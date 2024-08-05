@@ -6,8 +6,11 @@ import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
-class LoginViewModelImpl
-    extends LoginViewModel {
+class LoginModel {
+  bool showUsernameValidationError = false;
+}
+
+class LoginViewModelImpl extends LoginViewModel {
   LoginViewModelImpl(
       Coordinator coordinator,
       LoginModelContract loginModelContract,
@@ -19,7 +22,7 @@ class LoginViewModelImpl
   final InputFeedbackViewModel inputFeedbackViewModel;
   final InputFeedbackViewModel loginFeedbackViewModel;
 
-  bool showUsernameValidationError = false;
+  final LoginModel validationModel = LoginModel();
 
   @override
   Stream<ViewModel> get datasourceChanged =>
@@ -42,15 +45,16 @@ class LoginViewModelImpl
 
   @override
   void updateUsername(String updatedUsername) {
-    showUsernameValidationError =
+    validationModel.showUsernameValidationError =
         !loginModelContract.updateUsername(updatedUsername);
     inputFeedbackViewModel.setFeedback("only numbers allowed");
-    inputFeedbackViewModel.setShowFeedback(showUsernameValidationError);
+    inputFeedbackViewModel.setShowFeedback(
+        validationModel.showUsernameValidationError);
   }
 
   @override
   bool showUpdateUsernameError() {
-    return showUsernameValidationError;
+    return validationModel.showUsernameValidationError;
   }
 
   @override
@@ -73,10 +77,10 @@ class LoginViewModelImpl
 
   @override
   String? validatePassword(String? password) {
-    if(password == null || password.isEmpty){
+    if (password == null || password.isEmpty) {
       return "password is required";
     }
-    if (password.length < 8){
+    if (password.length < 8) {
       return "you need at least 8 characters";
     }
     return null;
@@ -84,12 +88,15 @@ class LoginViewModelImpl
 
   @override
   String? validateUsername(String? username) {
-    if(username == null || username.isEmpty){
+    if (username == null || username.isEmpty) {
       return "username is required just numbers allowed";
     }
-    if (username.length < 3){
+    if (username.length < 3) {
       return "you need at least 3 characters just numbers allowed";
     }
     return null;
   }
+
+  @override
+  List<Object?> get props => [validationModel];
 }
