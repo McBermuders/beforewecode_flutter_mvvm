@@ -1,14 +1,14 @@
 import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/models/login_model_contract.dart';
-import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
 import 'input_feedback_view_model.dart';
 
-abstract class LoginViewModel extends ViewModel {
-  LoginViewModel(
-      Coordinator coordinator, this.loginModelContract)
-      : super(coordinator);
-  final LoginModelContract loginModelContract;
+abstract interface class LoginViewModel implements ViewModel {
+  LoginModelContract get loginModelContract;
+
+  InputFeedbackViewModel get inputFeedbackViewModel;
+
+  InputFeedbackViewModel get loginFeedbackViewModel;
 
   void updateUsername(String updatedUsername);
 
@@ -17,10 +17,6 @@ abstract class LoginViewModel extends ViewModel {
   bool showUpdateUsernameError();
 
   bool login();
-
-  InputFeedbackViewModel getInputFeedbackViewModel();
-
-  InputFeedbackViewModel getLoginFeedbackViewModel();
 
   String? validateUsername(String? username);
 

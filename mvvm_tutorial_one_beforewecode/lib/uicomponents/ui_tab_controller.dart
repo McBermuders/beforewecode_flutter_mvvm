@@ -131,16 +131,14 @@ class UITabsState extends State<UITabs> {
   }
 
   void onExpansionChangedListener(bool expanded, int index) {
-    print("onExpansionChangedListener");
     expandedStateForSection[selectedTab][index] = expanded;
 
     if (expanded) {
       setState(() {});
-    }else {
-      Future.delayed(const Duration(milliseconds: 150),(){
-       setState(() {});
+    } else {
+      Future.delayed(const Duration(milliseconds: 150), () {
+        setState(() {});
       });
-
     }
   }
 
@@ -247,7 +245,8 @@ class _UIExpansionTile extends StatelessWidget {
     return Card(
       child: Theme(
         data: Theme.of(context).copyWith(
-            unselectedWidgetColor: Colors.white,),
+          unselectedWidgetColor: Colors.white,
+        ),
         child: ListTileTheme(
           dense: true,
           child: ExpansionTile(

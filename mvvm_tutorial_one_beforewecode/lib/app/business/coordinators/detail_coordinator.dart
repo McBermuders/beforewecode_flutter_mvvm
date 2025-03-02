@@ -13,7 +13,7 @@ import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/proje
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
-class DetailCoordinator extends Coordinator {
+class DetailCoordinator implements Coordinator {
   final clientURL =
       'https://aftercode.s3.us-east-2.amazonaws.com/prepublish.json';
 

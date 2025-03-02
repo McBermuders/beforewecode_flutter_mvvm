@@ -9,9 +9,11 @@ class FeedBackModel {
   bool shouldShowFeedback = false;
 }
 
-class InputFeedbackViewModelImpl extends InputFeedbackViewModel {
+class InputFeedbackViewModelImpl implements InputFeedbackViewModel {
   @override
-  InputFeedbackViewModelImpl(Coordinator coordinator) : super(coordinator);
+  final Coordinator coordinator;
+
+  InputFeedbackViewModelImpl({required this.coordinator});
 
   final datasourceChangedStreamController =
       StreamController<InputFeedbackViewModel>.broadcast();
@@ -54,7 +56,4 @@ class InputFeedbackViewModelImpl extends InputFeedbackViewModel {
       datasourceChangedStreamController.sink.add(this);
     }
   }
-
-  @override
-  List<Object?> get props => [feedback.feedback, feedback.shouldShowFeedback];
 }

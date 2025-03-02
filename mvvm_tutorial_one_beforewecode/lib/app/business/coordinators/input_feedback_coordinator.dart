@@ -8,7 +8,7 @@ import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/proje
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
-class InputFeedbackCoordinator extends Coordinator {
+class InputFeedbackCoordinator implements Coordinator {
   final InputFeedbackViewModel? viewModel;
 
   InputFeedbackCoordinator(this.viewModel);
@@ -25,7 +25,8 @@ class InputFeedbackCoordinator extends Coordinator {
 
   @override
   TheView<ViewModel> start() {
-    return InputFeedbackView(viewModel ?? InputFeedbackViewModelImpl(this),
+    return InputFeedbackView(
+        viewModel ?? InputFeedbackViewModelImpl(coordinator: this),
         Key("Feedback${hashCode.toString()}"));
   }
 }

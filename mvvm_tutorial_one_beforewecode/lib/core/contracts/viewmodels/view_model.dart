@@ -1,10 +1,7 @@
-import 'package:equatable/equatable.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 
-abstract class ViewModel extends Equatable {
-  const ViewModel(this.coordinator);
-
-  final Coordinator coordinator;
+abstract interface class ViewModel {
+  Coordinator get coordinator;
 
   Stream<ViewModel> get datasourceChanged;
 

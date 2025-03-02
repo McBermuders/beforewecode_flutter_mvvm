@@ -10,17 +10,22 @@ class LoginModel {
   bool showUsernameValidationError = false;
 }
 
-class LoginViewModelImpl extends LoginViewModel {
-  LoginViewModelImpl(
-      Coordinator coordinator,
-      LoginModelContract loginModelContract,
-      this.inputFeedbackViewModel,
-      this.loginFeedbackViewModel)
-      : super(coordinator, loginModelContract);
+class LoginViewModelImpl implements LoginViewModel {
+  @override
+  final LoginModelContract loginModelContract;
+  @override
+  final InputFeedbackViewModel inputFeedbackViewModel;
+  @override
+  final InputFeedbackViewModel loginFeedbackViewModel;
+
+  @override
+  final Coordinator coordinator;
+
+  LoginViewModelImpl(this.inputFeedbackViewModel, this.loginFeedbackViewModel,
+      {required this.coordinator, required this.loginModelContract});
+
   final datasourceChangedStreamController =
       StreamController<LoginViewModel>.broadcast();
-  final InputFeedbackViewModel inputFeedbackViewModel;
-  final InputFeedbackViewModel loginFeedbackViewModel;
 
   final LoginModel validationModel = LoginModel();
 
@@ -48,23 +53,13 @@ class LoginViewModelImpl extends LoginViewModel {
     validationModel.showUsernameValidationError =
         !loginModelContract.updateUsername(updatedUsername);
     inputFeedbackViewModel.setFeedback("only numbers allowed");
-    inputFeedbackViewModel.setShowFeedback(
-        validationModel.showUsernameValidationError);
+    inputFeedbackViewModel
+        .setShowFeedback(validationModel.showUsernameValidationError);
   }
 
   @override
   bool showUpdateUsernameError() {
     return validationModel.showUsernameValidationError;
-  }
-
-  @override
-  InputFeedbackViewModel getInputFeedbackViewModel() {
-    return inputFeedbackViewModel;
-  }
-
-  @override
-  InputFeedbackViewModel getLoginFeedbackViewModel() {
-    return loginFeedbackViewModel;
   }
 
   @override
@@ -96,7 +91,4 @@ class LoginViewModelImpl extends LoginViewModel {
     }
     return null;
   }
-
-  @override
-  List<Object?> get props => [validationModel];
 }

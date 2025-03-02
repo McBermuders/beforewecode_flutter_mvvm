@@ -18,24 +18,22 @@ abstract class TheView<V extends ViewModel> extends StatefulWidget {
   Future<void> handleRefresh() async {
     return await _viewModel.loadData();
   }
-
-  void dispose() {}
 }
 
 class TheViewState<V extends ViewModel> extends State<TheView> {
   late V viewModel;
-  List<StreamSubscription> subscriptions = [];
+  final List<StreamSubscription> subscriptions = [];
 
   @override
   void initState() {
+    super.initState();
     viewModel = widget._viewModel as V;
-    StreamSubscription<ViewModel> _streamDatasourceChanged;
-    _streamDatasourceChanged = viewModel.datasourceChanged.listen((viewModel) {
+    final _streamDatasourceChanged =
+        viewModel.datasourceChanged.listen((viewModel) {
       setState(() {});
     });
     subscriptions.add(_streamDatasourceChanged);
     viewModel.loadData();
-    super.initState();
   }
 
   @override
@@ -43,14 +41,16 @@ class TheViewState<V extends ViewModel> extends State<TheView> {
     for (var subscription in subscriptions) {
       subscription.cancel();
     }
-    widget.dispose();
     viewModel.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.buildWithViewModel(context, viewModel);
+    return ViewModelProvider(
+      viewModel: viewModel,
+      child: widget.buildWithViewModel(context, viewModel),
+    );
   }
 }
 
@@ -65,13 +65,15 @@ class ViewModelProvider<V extends ViewModel> extends InheritedWidget {
     return oldWidget.viewModel != oldWidget.viewModel;
   }
 
-  static ViewModelProvider<V>? maybeOf<V extends ViewModel>(BuildContext context) {
+  static ViewModelProvider<V>? maybeOf<V extends ViewModel>(
+      BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<ViewModelProvider<V>>();
   }
 
   static ViewModelProvider<V> of<V extends ViewModel>(BuildContext context) {
     final ViewModelProvider<V>? result = maybeOf<V>(context);
-    assert(result != null, 'No ViewModelProvider ${V.runtimeType} found in context');
+    assert(result != null,
+        'No ViewModelProvider ${V.runtimeType} found in context');
     return result!;
   }
 }

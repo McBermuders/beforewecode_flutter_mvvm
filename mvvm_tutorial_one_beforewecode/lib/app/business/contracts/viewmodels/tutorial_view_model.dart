@@ -1,11 +1,8 @@
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/contracts/card.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
-import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
-abstract class TutorialViewModel extends ViewModel {
-  const TutorialViewModel(Coordinator coordinator) : super(coordinator);
-
+abstract interface class TutorialViewModel implements ViewModel {
   Card getCardAtIndex(int section, int index);
 
   int cardCount(int section);

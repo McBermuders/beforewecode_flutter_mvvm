@@ -9,16 +9,19 @@ class CardCounter {
   int cardCounter = 0;
 }
 
-class SimpleViewModelImpl extends SimpleViewModel {
+class SimpleViewModelImpl implements SimpleViewModel {
+  @override
+  final Coordinator coordinator;
+
   final CardCounter cardCounter = CardCounter();
   final datasourceChangedStreamController =
       StreamController<SimpleViewModelImpl>.broadcast();
 
+  SimpleViewModelImpl({required this.coordinator});
+
   @override
   Stream<ViewModel> get datasourceChanged =>
       datasourceChangedStreamController.stream;
-
-  SimpleViewModelImpl(Coordinator coordinator) : super(coordinator);
 
   @override
   void dispose() {
@@ -42,7 +45,4 @@ class SimpleViewModelImpl extends SimpleViewModel {
     var reg = RegularTextCard("Test $index", false);
     return reg;
   }
-
-  @override
-  List<Object?> get props => [cardCounter.cardCounter];
 }

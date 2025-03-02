@@ -1,18 +1,16 @@
-import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/tutorial_view_model.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_app_identifiers.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/header_with_optional_image_tile.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/text_tile.dart';
-import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
-import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
-import '../cards/regular_text_card.dart';
+//dart
+import 'dart:math';
 
 //flutter
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-
-//dart
-import 'dart:math';
+import 'package:mvvm_tutorial_one_beforewecode/app/business/contracts/viewmodels/tutorial_view_model.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_app_identifiers.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/regular_text_card.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/ui/cards/section_card.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/header_with_optional_image_tile.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/ui/widgets/listtiles/text_tile.dart';
+import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 
 class DynamicListView extends TheView<TutorialViewModel> {
   const DynamicListView(TutorialViewModel viewModel)
@@ -94,17 +92,21 @@ class DynamicListViewScreenState extends State<DynamicListViewScreen>
 
   @override
   Widget build(BuildContext context) {
-    var tabs = <Tab>[];
-    var widgets = <Widget>[];
-    var sectionCount = viewModel.sectionCount();
+    final tabs = <Tab>[];
+    final widgets = <Widget>[];
+    final sectionCount = viewModel.sectionCount();
 
     if (sectionCount == 0) {
-      tabs.add(const Tab(
-        text: "",
-      ));
-      widgets.add(const Center(
-        child: CircularProgressIndicator(),
-      ));
+      tabs.add(
+        const Tab(
+          text: "",
+        ),
+      );
+      widgets.add(
+        const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
     } else {
       for (int i = 0; i < sectionCount; i++) {
         tabs.add(Tab(
@@ -113,8 +115,8 @@ class DynamicListViewScreenState extends State<DynamicListViewScreen>
       }
 
       for (int i = 0; i < sectionCount; i++) {
-        var c = ScrollController(keepScrollOffset: false);
-        widgets.add(getList(i, c, tabController));
+        final scrollController = ScrollController(keepScrollOffset: false);
+        widgets.add(getList(i, scrollController, tabController));
       }
     }
 
@@ -164,7 +166,8 @@ class DynamicListViewScreenState extends State<DynamicListViewScreen>
     );
   }
 
-  Widget getList(int section, ScrollController scrollController, TabController tabController) {
+  Widget getList(int section, ScrollController scrollController,
+      TabController tabController) {
     return ListWithRefreshIndicator(
       section: section,
       scrollController: scrollController,
@@ -196,27 +199,27 @@ class ListWithRefreshIndicator extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       itemCount: viewModel.cardCount(section),
       itemBuilder: (BuildContext context, int index) {
-        if (index == 0) {
-          SectionCard sectionCard =
-              viewModel.getCardAtIndex(section, index) as SectionCard;
+        final card = viewModel.getCardAtIndex(section, index);
+        if (card is SectionCard) {
           return HeaderWithOptionalImageTile(
             navigator: viewModel.coordinator,
-            imageURL: sectionCard.imageUrl,
+            imageURL: card.imageUrl,
             key: Key("HeaderWithOptionalImageTile$section-$index"),
             navigationIdentifier: NavigationAppIdentifiers.form,
           );
+        } else if (card is RegularTextCard) {
+          final widthFactor = min(500 / MediaQuery.of(context).size.width, 1.0);
+          return TextTile(
+            key: Key("TextTile$section-$index"),
+            textCard: card,
+            widthFactor: widthFactor,
+          );
         }
-        var widthFactor = min(500 / MediaQuery.of(context).size.width, 1.0);
-        RegularTextCard card =
-            viewModel.getCardAtIndex(section, index) as RegularTextCard;
-        return TextTile(
-          key: Key("TextTile$section-$index"),
-          textCard: card,
-          widthFactor: widthFactor,
-        );
+        return Text("Unhandled card type ${card.runtimeType}");
       },
     );
-    var r = RefreshIndicator(onRefresh: handleRefresh, child: item);
-    return r;
+    final refreshIndicator =
+        RefreshIndicator(onRefresh: handleRefresh, child: item);
+    return refreshIndicator;
   }
 }

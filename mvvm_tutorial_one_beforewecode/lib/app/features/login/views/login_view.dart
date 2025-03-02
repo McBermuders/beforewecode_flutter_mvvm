@@ -43,7 +43,7 @@ class LoginView
                   validator: viewModel.validateUsername,
                 ),
               ),
-              InputFeedbackCoordinator(viewModel.getInputFeedbackViewModel())
+              InputFeedbackCoordinator(viewModel.inputFeedbackViewModel)
                   .start(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -60,7 +60,7 @@ class LoginView
                   validator: viewModel.validatePassword,
                 ),
               ),
-              InputFeedbackCoordinator(viewModel.getLoginFeedbackViewModel())
+              InputFeedbackCoordinator(viewModel.loginFeedbackViewModel)
                   .start(),
               Semantics(
                 button: true,

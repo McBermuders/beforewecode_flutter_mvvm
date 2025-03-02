@@ -10,10 +10,15 @@ class ValidationModel {
   bool showLoginError = false;
 }
 
-class SampleFormViewModelImpl extends SampleFormViewModel {
+class SampleFormViewModelImpl implements SampleFormViewModel {
+  @override
+  final Coordinator coordinator;
+  @override
+  final LoginModelContract loginModelContract;
+
   SampleFormViewModelImpl(
-      Coordinator coordinator, LoginModelContract loginModelContract)
-      : super(coordinator, loginModelContract);
+      {required this.coordinator, required this.loginModelContract});
+
   final datasourceChangedStreamController =
       StreamController<SampleFormViewModel>.broadcast();
   final ValidationModel validationModel = ValidationModel();
@@ -84,10 +89,4 @@ class SampleFormViewModelImpl extends SampleFormViewModel {
     }
     return null;
   }
-
-  @override
-  List<Object?> get props => [
-        validationModel.showLoginError,
-        validationModel.showUsernameValidationError
-      ];
 }

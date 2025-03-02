@@ -15,10 +15,12 @@ class SelectedSectionModel {
   int lastSelectedSection = 0;
 }
 
-class DetailTutorialViewModelImpl extends TutorialViewModel {
+class DetailTutorialViewModelImpl implements TutorialViewModel {
   final List<List<Card>> cards = [];
   final LoadingModel loadingModel = LoadingModel();
   final SelectedSectionModel selectedSection = SelectedSectionModel();
+  @override
+  final Coordinator coordinator;
 
   final datasourceChangedStreamController =
       StreamController<TutorialViewModel>.broadcast();
@@ -32,8 +34,7 @@ class DetailTutorialViewModelImpl extends TutorialViewModel {
   Stream<int> get selectedSectionChanged =>
       selectedSectionChangedController.stream;
 
-  DetailTutorialViewModelImpl({required Coordinator coordinator})
-      : super(coordinator);
+  DetailTutorialViewModelImpl({required this.coordinator});
 
   @override
   Future<void> loadData() {
@@ -141,12 +142,4 @@ class DetailTutorialViewModelImpl extends TutorialViewModel {
     datasourceChangedStreamController.close();
     selectedSectionChangedController.close();
   }
-
-  @override
-  List<Object?> get props => [
-        cards,
-        loadingModel,
-        selectedSection.selectedSection,
-        selectedSection.lastSelectedSection
-      ];
 }

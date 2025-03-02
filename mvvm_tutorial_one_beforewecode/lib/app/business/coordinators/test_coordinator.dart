@@ -10,7 +10,7 @@ import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coord
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/project_navigator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 
-class TestCoordinator extends Coordinator {
+class TestCoordinator implements Coordinator {
   final clientURL =
       'https://aftercode.s3.us-east-2.amazonaws.com/prepublish.json';
 
@@ -19,7 +19,7 @@ class TestCoordinator extends Coordinator {
 
   @override
   TheView start() {
-    var viewModel = SimpleViewModelImpl(this);
+    final viewModel = SimpleViewModelImpl(coordinator: this);
     TheView view = TestView(
       viewModel: viewModel,
     );

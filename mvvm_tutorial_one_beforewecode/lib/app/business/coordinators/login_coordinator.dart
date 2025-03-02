@@ -4,13 +4,13 @@ import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/root_co
 import 'package:mvvm_tutorial_one_beforewecode/app/business/models/login_model_impl.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/input_feedback_view_model_impl.dart';
 import 'package:mvvm_tutorial_one_beforewecode/app/business/viewmodels/login_view_model_impl.dart';
-import 'package:mvvm_tutorial_one_beforewecode/app/ui/views/login_view.dart';
+import 'package:mvvm_tutorial_one_beforewecode/app/features/login/views/login_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coordinator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/project_navigator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/viewmodels/view_model.dart';
 
-class LoginCoordinator extends Coordinator {
+class LoginCoordinator implements Coordinator {
   late TheView widget;
 
   @override
@@ -29,10 +29,10 @@ class LoginCoordinator extends Coordinator {
   TheView<ViewModel> start() {
     LoginModelContract loginModelContract = LoginModelImpl();
     var viewModel = LoginViewModelImpl(
-      this,
-      loginModelContract,
-      InputFeedbackViewModelImpl(this),
-      InputFeedbackViewModelImpl(this),
+      InputFeedbackViewModelImpl(coordinator: this),
+      InputFeedbackViewModelImpl(coordinator: this),
+      coordinator: this,
+      loginModelContract: loginModelContract,
     );
     widget = LoginView(
       viewModel,

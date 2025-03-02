@@ -11,7 +11,9 @@ class SelectedSectionModel {
   int lastSelectedSection = 0;
 }
 
-class TutorialViewModelImpl extends TutorialViewModel {
+class TutorialViewModelImpl implements TutorialViewModel {
+  @override
+  final Coordinator coordinator;
   final TutorialModelContract tutorialModel;
   final List<List<Card>> cards = [];
   final SelectedSectionModel selectedSection = SelectedSectionModel();
@@ -28,8 +30,7 @@ class TutorialViewModelImpl extends TutorialViewModel {
       selectedSectionChangedController.stream;
 
   TutorialViewModelImpl(
-      {required Coordinator coordinator, required this.tutorialModel})
-      : super(coordinator) {
+      {required this.coordinator, required this.tutorialModel}) {
     tutorialModel.response.listen((responseModel) {
       cards.clear();
       for (final sectionOfCardList in responseModel.sections) {
@@ -103,8 +104,4 @@ class TutorialViewModelImpl extends TutorialViewModel {
     await tutorialModel.loadData();
     return;
   }
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
 }

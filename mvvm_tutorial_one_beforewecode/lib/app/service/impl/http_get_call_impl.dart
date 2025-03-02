@@ -12,9 +12,8 @@ class HttpGetCallImpl implements HttpGetCall {
     return await fetchInformation(http.Client()).catchError((e) {
       if (e is Error) {
         _onError(e);
-      } else {
-        _onError(Error());
       }
+      throw Exception(e);
     });
   }
 

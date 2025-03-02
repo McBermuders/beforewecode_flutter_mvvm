@@ -11,7 +11,7 @@ import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/coord
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/coordinators/project_navigator.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 
-class RootCoordinator extends Coordinator {
+class RootCoordinator implements Coordinator {
   @override
   void end() {}
 
