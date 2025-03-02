@@ -5,16 +5,14 @@ import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/input_f
 import 'package:mvvm_tutorial_one_beforewecode/app/business/coordinators/navigation_app_identifiers.dart';
 import 'package:mvvm_tutorial_one_beforewecode/core/contracts/ui/the_view.dart';
 
-class LoginView
-    extends TheView<LoginViewModel> {
+class LoginView extends TheView<LoginViewModel> {
   LoginView(LoginViewModel viewModel)
       : super(viewModel, const Key("SampleFormExternalFeedbackView"));
 
   final _formKey = GlobalKey<FormState>();
 
   @override
-  Widget buildWithViewModel(
-      BuildContext context, LoginViewModel viewModel) {
+  Widget buildWithViewModel(BuildContext context, LoginViewModel viewModel) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('www.beforewecode.com'),
@@ -31,7 +29,8 @@ class LoginView
                   initialValue: "",
                   inputFormatters: <TextInputFormatter>[
                     FilteringTextInputFormatter.allow(
-                        RegExp(r'^\d+(?:\.\d+)?')),
+                      RegExp(r'^\d+(?:\.\d+)?'),
+                    ),
                   ],
                   onChanged: (v) {
                     viewModel.updateUsername(v);
@@ -60,7 +59,7 @@ class LoginView
                   validator: viewModel.validatePassword,
                 ),
               ),
-              InputFeedbackCoordinator(viewModel.loginFeedbackViewModel)
+              InputFeedbackCoordinator(viewModel.inputFeedbackViewModel)
                   .start(),
               Semantics(
                 button: true,
@@ -73,9 +72,7 @@ class LoginView
                   onPressed: () {
                     if (_formKey.currentState?.validate() == true) {
                       if (viewModel.login()) {
-
-                            viewModel
-                            .coordinator
+                        viewModel.coordinator
                             .move(NavigationAppIdentifiers.detail, context);
                       }
                     }

@@ -8,8 +8,6 @@ abstract interface class LoginViewModel implements ViewModel {
 
   InputFeedbackViewModel get inputFeedbackViewModel;
 
-  InputFeedbackViewModel get loginFeedbackViewModel;
-
   void updateUsername(String updatedUsername);
 
   void updatePassword(String updatedPassword);
